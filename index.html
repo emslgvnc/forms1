@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Not Ortalaması Hesaplama</title>
+    <script type="text/javascript">
+        // Not ortalaması genelde vizenin ½40'ı finalin %60'ı alınarak hesaplanır.
+
+        /*
+        AA 100-90 arası -> Başarılı
+        BA 89-80 arası -> Başarılı
+        BB 79-75 arası -> Başarılı
+        CB 74-70 arası -> Başarılı
+        CC 69-60 arası -> Başarılı
+        DC 59-50 arası -> Koşullu Başarılı
+        DD 49-40 arası -> Başarısız
+        FD 39-30 arası -> Başarısız
+*/
+        function hesapla() {
+            var ort, harfnot;
+            vize = parseFloat(document.getElementById('vize').value);
+            final = parseFloat(document.getElementById('final').value);
+            ort = (vize * 40 / 100) + (final * 60 / 100);
+
+            if (ort >= 90 && ort <= 100)
+                harfnot = 'AA  Başarılı';
+            else if (ort >= 80 && ort < 89)
+                harfnot = 'BA  Başarılı';
+            else if (ort >= 75 && ort < 79)
+                harfnot = 'BB  Başarılı';
+            else if (ort >= 60 && ort < 69)
+                harfnot = 'CC  Başarılı';
+            else if (ort >= 50 && ort < 59)
+                harfnot = 'DC  Koşullu Başarılı';
+            else if (ort >= 40 && ort < 49)
+                harfnot = 'DD  Başarısız';
+            else if (ort >= 30 && ort < 39)
+                harfnot = 'FD  Başarısız';
+            document.getElementById('txtortalama').value = ort;
+            document.getElementById('txtharf').value = harfnot;
+        }
+    </script>
+</head>
+
+<body>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <h2 style="text-align: center; font-size: 25px;">Not ortalaması Hesaplama</h2>
+                <div class="ilkform">
+                    <form class="form">
+                        <label for="vize">Vize :</label>
+                        <input type="text" name="vize" id="vize"><br/>
+                        <label for="final">Final :</label>
+                        <input type="text" name="final" id="final"><br/>
+                        <p>Ortalama </p>
+                        <input type="text" name="txtortalama" id="txtortalama"><br/>
+                        <p>Harf Notu </p>
+                        <input type="text" name="txtharf" id="txtharf"><br/>
+
+                        <input type="button" class="btn" onclick="hesapla();" value="Hesapla" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</body>
+
+</html>
